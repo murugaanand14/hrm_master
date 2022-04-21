@@ -12,19 +12,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.rubix.hrm.models.BankDetails;
-import com.rubix.hrm.services.BankDetailsServices;
+import com.rubix.hrm.services.BankDetailsService;
 
+@RestController
+@RequestMapping("/hrm/bankDetails")
 
 public class BankDetailsController {
 	@Autowired
-	private BankDetailsServices bankDetailsService;
+	private BankDetailsService bankDetailsService;
 
 	@PostMapping
 	public String savedetails(@RequestBody BankDetails bankDetails) {
-		Optional<BankDetails> comDb = bankDetailsService.create(bankDetails);
-		if (comDb.isPresent()) {
+		Optional<BankDetails> bankDb = bankDetailsService.create(bankDetails);
+		if (bankDb.isPresent()) {
 			return "The bank data has been saved successfully!";
 		} else {
 			return "bank data already exist in records";
@@ -48,8 +52,8 @@ public class BankDetailsController {
 
 	@PutMapping
 	public String updateBankData(@RequestBody BankDetails bankDetails) {
-		Optional<BankDetails> comobj = bankDetailsService.update(bankDetails);
-		if (comobj.isEmpty()) {
+		Optional<BankDetails> banobj = bankDetailsService.update(bankDetails);
+		if (banobj.isEmpty()) {
 			return "The Bank data does not exist in records!";
 		} else {
 			return "The Bank data has been updated successfully!";
