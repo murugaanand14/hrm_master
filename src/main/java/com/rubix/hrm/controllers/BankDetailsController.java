@@ -22,6 +22,7 @@ import com.rubix.hrm.services.BankDetailsService;
 @RequestMapping("/hrm/bankDetails")
 
 public class BankDetailsController {
+	
 	@Autowired
 	private BankDetailsService bankDetailsService;
 

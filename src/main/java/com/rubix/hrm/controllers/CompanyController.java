@@ -46,12 +46,12 @@ public class CompanyController {
 		}
 	}
 
-	@GetMapping
+	@GetMapping("/hrm/companyAll")
 	public List<Company> getALLCompany() {
 		return companyService.retrieve();
 	}
 
-	@PutMapping
+	@PutMapping("/{id}")
 	public String updateCompany(@RequestBody Company comapny) {
 		Optional<Company> comobj = companyService.update(comapny);
 		if (comobj.isEmpty()) {

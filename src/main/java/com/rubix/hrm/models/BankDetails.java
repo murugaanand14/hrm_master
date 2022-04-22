@@ -35,4 +35,10 @@ public class BankDetails {
 	
 	@Column(name = "branch_name")
 	private String branchName;
+	
+	@Column(name = "aadhar_no")
+	private long aadharNo;
+	
+	@Column(name = "pan_no")
+	private String panNo;
 }

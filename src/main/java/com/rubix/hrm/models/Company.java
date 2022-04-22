@@ -31,12 +31,12 @@ public class Company {
 	private String companyMail;
 
 	@Column(name = "com_address")
-	private String comaAddress;
+	private String companyAddress;
 
 	@Column(name = "com_barach")
-	private String comabrach;
+	private String companybrach;
 
 	@Column(name = "com_region")
-	private String comaRegion;
+	private String companyRegion;
 
 }

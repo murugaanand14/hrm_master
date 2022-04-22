@@ -46,12 +46,12 @@ public class ClientController {
 		}
 	}
 
-	@GetMapping
+	@GetMapping("/hrm/clientAll")
 	public List<Client> getALLClient() {
 		return clientService.retrieve();
 	}
 
-	@PutMapping
+	@PutMapping("/{id}")
 	public String updateClient(@RequestBody Client client) {
 		Optional<Client> cli = clientService.update(client);
 		if (cli.isEmpty()) {

@@ -1,5 +1,9 @@
 package com.rubix.hrm.models;
 
+
+
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +20,7 @@ import lombok.Data;
 @Table(name = "employee")
 public class Employee {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "employee_Id")
 	private Long employeeId;
 
@@ -42,7 +46,7 @@ public class Employee {
 	private String address;
     
     @Column(name = "dob")
-    private int dob;
+    private Date dob;
     
 	@Column(name = "mobileNumber")
 	private String mobileNumber;
