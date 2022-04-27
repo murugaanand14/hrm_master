@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rubix.hrm.models.Client;
 import com.rubix.hrm.services.ClientService;
 
-
+/* *@author  Muruganandham
+* @version 1.0
+*
+*/
 @RestController
 @RequestMapping("/hrm/client")
 
@@ -37,7 +40,7 @@ public class ClientController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Client> getClientById(@PathVariable("clientId") int id) {
+	public ResponseEntity<Client> getClientById(@PathVariable("id")Long id) {
 		Optional<Client> cli = clientService.retrieveOne(id);
 		if (cli.isPresent()) {
 			return new ResponseEntity<>(cli.get(), HttpStatus.OK);
@@ -46,12 +49,12 @@ public class ClientController {
 		}
 	}
 
-	@GetMapping("/hrm/clientAll")
+	@GetMapping
 	public List<Client> getALLClient() {
 		return clientService.retrieve();
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping
 	public String updateClient(@RequestBody Client client) {
 		Optional<Client> cli = clientService.update(client);
 		if (cli.isEmpty()) {
@@ -62,11 +65,8 @@ public class ClientController {
 	}
 
 	@DeleteMapping("/{id}")
-	public String deleteClientById(@PathVariable("id") int id) {
+	public String deleteClientById(@PathVariable("id")Long id) {
 		return clientService.delete(id);
 	}
 
 }
-
-
-

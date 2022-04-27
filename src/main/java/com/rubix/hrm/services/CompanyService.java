@@ -17,32 +17,25 @@ public class CompanyService {
 	private CompanyRepository companyRepository;
 
 	public Optional<Company> create(Company company) {
-		if (companyRepository.existsById(company.getCompanyId())) {
-			return Optional.empty();
-		} else {
 			return Optional.of(companyRepository.save(company));
-		}
 	}
 
 	public List<Company> retrieve() {
 		return companyRepository.findAll();
 	}
 
-	public Optional<Company> retrieveOne(int comId) {
-		return companyRepository.findById((long) comId);
+	public Optional<Company> retrieveOne(long comId) {
+		return companyRepository.findById(comId);
 	}
 
 	public Optional<Company> update(Company company) {
-		if (companyRepository.existsById((company.getCompanyId()))) {
+		
 			return Optional.of(companyRepository.save(company));
-		} else {
-			return Optional.empty();
-		}
 	}
 
-	public String delete(int comId) {
-		if (companyRepository.existsById((long) comId)) {
-			companyRepository.deleteById((long) comId);
+	public String delete(Long comId) {
+		if (companyRepository.existsById(comId)) {
+			companyRepository.deleteById(comId);
 			return comId + " deleted successfully!";
 		} else {
 			return "The company data does not exist in records!";

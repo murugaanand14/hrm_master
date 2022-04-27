@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rubix.hrm.models.Company;
 import com.rubix.hrm.services.CompanyService;
 
+/* *@author  Muruganandham
+* @version 1.0
+*
+*/
 @RestController
 @RequestMapping("/hrm/company")
 
@@ -37,7 +41,7 @@ public class CompanyController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Company> getCompanyById(@PathVariable("companyId") int id) {
+	public ResponseEntity<Company> getCompanyById(@PathVariable("id") Long id) {
 		Optional<Company> com = companyService.retrieveOne(id);
 		if (com.isPresent()) {
 			return new ResponseEntity<>(com.get(), HttpStatus.OK);
@@ -46,12 +50,12 @@ public class CompanyController {
 		}
 	}
 
-	@GetMapping("/hrm/companyAll")
+	@GetMapping
 	public List<Company> getALLCompany() {
 		return companyService.retrieve();
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping
 	public String updateCompany(@RequestBody Company comapny) {
 		Optional<Company> comobj = companyService.update(comapny);
 		if (comobj.isEmpty()) {
@@ -62,7 +66,7 @@ public class CompanyController {
 	}
 
 	@DeleteMapping("/{id}")
-	public String deleteCompanyById(@PathVariable("id") int id) {
+	public String deleteCompanyById(@PathVariable("id")Long id) {
 		return companyService.delete(id);
 	}
 

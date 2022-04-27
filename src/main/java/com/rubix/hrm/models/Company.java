@@ -1,17 +1,28 @@
 package com.rubix.hrm.models;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+/* *@author  Muruganandham
+* @version 1.0
+*
+*/
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
+@Getter
+@Setter
 @Entity
 @Table(name = "company")
 public class Company {
@@ -19,7 +30,7 @@ public class Company {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "company_id")
-	private long companyId;
+	private Long companyId;
 
 	@Column(name = "name")
 	private String companyName;
@@ -34,7 +45,7 @@ public class Company {
 	private String companyAddress;
 
 	@Column(name = "com_barach")
-	private String companybrach;
+	private String companyBrach;
 
 	@Column(name = "com_region")
 	private String companyRegion;

@@ -6,5 +6,4 @@ import com.rubix.hrm.models.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-
 }
