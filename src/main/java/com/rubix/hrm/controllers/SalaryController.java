@@ -40,7 +40,7 @@ public class SalaryController {
 		return Salarys;
 	}
 
-	@PutMapping("/salarys")
+	@PutMapping("/salary/{salaryId}")
 	public String update(@PathVariable("salaryId") long salaryId, @RequestBody Salary Salarys) {
 		return SalarysService.update(salaryId, Salarys);
 	}

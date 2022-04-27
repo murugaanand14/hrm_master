@@ -40,7 +40,7 @@ public class JobDeptController {
 		return Jobdepts;
 	}
 
-	@PutMapping("/jobdepts")
+	@PutMapping("/jobdept/{jobId}")
 	public String update(@PathVariable("jobId") long jobId, @RequestBody Jobdept Jobdepts) {
 		return JobdeptsService.update(jobId, Jobdepts);
 
