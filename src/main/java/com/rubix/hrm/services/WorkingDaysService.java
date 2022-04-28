@@ -16,7 +16,8 @@ public class WorkingDaysService {
 	 @Autowired
 	 WorkingDaysRepository workingDaysRepository;
 	 
-		public List<EmployeeWorkingDays> getAllEmployeeWorkingDays() {
+		public List<EmployeeWorkingDays> getAllEmployeeWorkingDays( ) {
+			//return (List<EmployeeWorkingDays>) workingDaysRepository.findAll();
 			List<EmployeeWorkingDays> employeeWorkingDays = new ArrayList <EmployeeWorkingDays>();	
 			workingDaysRepository.findAll().forEach(emp1 -> employeeWorkingDays.add(emp1));
 			return employeeWorkingDays;
@@ -36,6 +37,7 @@ public class WorkingDaysService {
 			return "successfully deleted";
 		}
 		public String update(int empid, EmployeeWorkingDays employeeWorkingDays) {
+			employeeWorkingDays.setEmpid(empid);
 			workingDaysRepository.save(employeeWorkingDays);
 			return "successfully Updated";
 		}

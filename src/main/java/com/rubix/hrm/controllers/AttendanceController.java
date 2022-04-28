@@ -17,7 +17,7 @@ import com.rubix.hrm.services.AttendanceService;
 
 
 @RestController
-@RequestMapping("/api/v1")
+//@RequestMapping("/api/v1")
 public class AttendanceController {
 
 	@Autowired
@@ -46,9 +46,9 @@ public class AttendanceController {
 	}
 	
 	@PutMapping("/attendance/{referenceId}")
-	private Attendance update(@RequestBody Attendance attendance) {
-		attendanceService.saveOrUpdate(attendance);
-		return attendance;
+	private String update(@PathVariable("referenceId") int referenceId,@RequestBody Attendance attendance) {
+		//attendanceService.saveOrUpdate(attendance);
+		return attendanceService.update(referenceId, attendance);
 	}
 
 

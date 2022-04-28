@@ -37,6 +37,7 @@ public class LeaveFormService {
 	}
 
 	public String update(int empid, LeaveForm leaveForm) {
+		leaveForm.setEmpid(empid);
 		leaveFormRepository.save(leaveForm);
 		return "successfully updated";
 	}

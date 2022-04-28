@@ -36,6 +36,7 @@ public class AttendanceService {
 		return "successfully deleted";
 	}
 	public String update(int referenceId, Attendance attendance) {
+		attendance.setReferenceId(referenceId);
 		attendanceRepository.save(attendance);
 		return "successfully updated";
 	}

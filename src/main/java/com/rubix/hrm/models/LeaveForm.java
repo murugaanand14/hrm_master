@@ -5,8 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -18,6 +22,7 @@ import lombok.Data;
 public class LeaveForm {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "empid")
     private int empid;
 
@@ -28,10 +33,11 @@ public class LeaveForm {
     @Column(name = "designation")
     private String designation;
     
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     @Column(name = "from_date")
     private Date fromDate;   
     
-
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
    // @NotNull(message = "Please provide end date!")
     @Column(name = "to_date")
     private Date toDate;

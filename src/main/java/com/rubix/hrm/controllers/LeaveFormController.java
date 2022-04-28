@@ -19,14 +19,14 @@ import lombok.Data;
 
 @Data
 @RestController
-@RequestMapping("/api/v1")
+//@RequestMapping("/api/v1")
 public class LeaveFormController {
 	
 	@Autowired
     LeaveFormService leaveFormService;
 	
 	@GetMapping("/leaveform")
-	private List<LeaveForm> getAllLeaveforms() {
+	private List<LeaveForm> getAll() {
 		return leaveFormService.getAllLeaveForm();
 	}
 
@@ -47,8 +47,8 @@ public class LeaveFormController {
 	}
 
 	@PutMapping("/leaveform/{empid}")
-	public LeaveForm update( @RequestBody LeaveForm leaveForm) {
-		return leaveForm;
+	private String update(@PathVariable("empid") int empid, @RequestBody LeaveForm leaveForm) {
+		return leaveFormService.update(empid, leaveForm);
 	}
 
 

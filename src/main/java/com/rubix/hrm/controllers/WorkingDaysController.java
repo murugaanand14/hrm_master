@@ -19,7 +19,7 @@ import lombok.Data;
 
 @Data
 @RestController
-@RequestMapping("/api/v1")
+//@RequestMapping("/api/v1")
 
 public class WorkingDaysController {
 	
@@ -27,7 +27,7 @@ public class WorkingDaysController {
 	 WorkingDaysService workingDaysService;
 
 	@GetMapping("/empwork")
-	private List<EmployeeWorkingDays> getAllEmployeeWorkingDays() {
+	private List<EmployeeWorkingDays> getAll() {
 		return workingDaysService.getAllEmployeeWorkingDays();
 	}
 	
@@ -49,9 +49,9 @@ public class WorkingDaysController {
 	}	
 	
 	@PutMapping("/empwork/{empid}")
-	private EmployeeWorkingDays update(@RequestBody EmployeeWorkingDays employeeWorkingDays) {
-		workingDaysService.saveOrUpdate(employeeWorkingDays);
-		return employeeWorkingDays;
+	private String update(@PathVariable("empid") int empid,@RequestBody EmployeeWorkingDays employeeWorkingDays) {
+	//	workingDaysService.saveOrUpdate(employeeWorkingDays);
+		return workingDaysService.update(empid,employeeWorkingDays);
 	}
 
 	
