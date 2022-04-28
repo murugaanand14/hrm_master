@@ -18,11 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rubix.hrm.models.BankDetails;
 import com.rubix.hrm.services.BankDetailsService;
 
+/* *@author  Muruganandham
+* @version 1.0
+*
+*/
 @RestController
 @RequestMapping("/hrm/bankDetails")
 
 public class BankDetailsController {
-	
+
 	@Autowired
 	private BankDetailsService bankDetailsService;
 
@@ -37,7 +41,7 @@ public class BankDetailsController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<BankDetails> getDetailsById(@PathVariable("bankId") int id) {
+	public ResponseEntity<BankDetails> getDetailsById(@PathVariable("id") Long id) {
 		Optional<BankDetails> bank = bankDetailsService.retrieveOne(id);
 		if (bank.isPresent()) {
 			return new ResponseEntity<>(bank.get(), HttpStatus.OK);
@@ -62,7 +66,7 @@ public class BankDetailsController {
 	}
 
 	@DeleteMapping("/{id}")
-	public String deleteBankDataById(@PathVariable("id") int id) {
+	public String deleteBankDataById(@PathVariable("id") Long id) {
 		return bankDetailsService.delete(id);
 	}
 

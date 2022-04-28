@@ -9,19 +9,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+/* *@author  Muruganandham
+* @version 1.0
+*
+*/
 
-@Data
-@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
+@Getter
+@Setter
+@Entity
 @Table(name = "invoice")
 public class Invoice {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "invoice_id")
-	private long invoiceId;
+	private Long invoiceId;
 
 	@Column(name = "billing_start_date")
 	private Date billingStartDate;
@@ -30,6 +40,7 @@ public class Invoice {
 	private Date billingEndDate;
 
 	@Column(name = "invoice_date")
+
 	private Date invoiceDate;
 
 	@Column(name = "due_date")
@@ -39,7 +50,7 @@ public class Invoice {
 	private PaymentTerms paymentTerms;
 
 	@Column(name = "description")
-	private Date description;
+	private String description;
 
 	@Column(name = "billing_address")
 	private String billingAddress;

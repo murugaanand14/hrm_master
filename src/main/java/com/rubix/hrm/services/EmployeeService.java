@@ -11,23 +11,20 @@ import com.rubix.hrm.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {
+
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
 	public Optional<Employee> create(Employee employee) {
-		if (employeeRepository.existsById(employee.getEmployeeId())) {
-			return Optional.empty();
-		} else {
-			return Optional.of(employeeRepository.save(employee));
-		}
+		return Optional.of(employeeRepository.save(employee));
 	}
 
 	public List<Employee> retrieve() {
 		return employeeRepository.findAll();
 	}
 
-	public Optional<Employee> retrieveOne(int empid) {
-		return employeeRepository.findById((long) empid);
+	public Optional<Employee> retrieveOne(Long empid) {
+		return employeeRepository.findById(empid);
 	}
 
 	public Optional<Employee> update(Employee employee) {
@@ -38,9 +35,9 @@ public class EmployeeService {
 		}
 	}
 
-	public String delete(int empid) {
-		if (employeeRepository.existsById((long) empid)) {
-			employeeRepository.deleteById((long) empid);
+	public String delete(Long empid) {
+		if (employeeRepository.existsById(empid)) {
+			employeeRepository.deleteById(empid);
 			return empid + " deleted successfully!";
 		} else {
 			return "The employee data does not exist in records!";

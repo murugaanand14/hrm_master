@@ -1,6 +1,7 @@
 package com.rubix.hrm.models;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,13 +10,19 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+/* *@author  Muruganandham
+* @version 1.0
+*
+*/
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
+@Getter
+@Setter
 @Entity
 @Table(name = "client")
 
@@ -23,7 +30,7 @@ public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "client_id")
-	private long clientId;
+	private Long clientId;
 
 	@Column(name = "client_name")
 	private String clientName;

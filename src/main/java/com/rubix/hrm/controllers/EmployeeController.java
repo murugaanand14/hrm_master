@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.rubix.hrm.models.Employee;
 import com.rubix.hrm.services.EmployeeService;
+
+/* *@author  Muruganandham
+* @version 1.0
+*
+*/
 
 @RestController
 @RequestMapping("/hrm/employee")
@@ -27,8 +31,8 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 
 	@PostMapping
-	public String saveEmployee(@RequestBody Employee employee) {
-		Optional<Employee> employeeDB = employeeService.create(employee);
+	public String saveEmployee(@RequestBody Employee emplo) {
+		Optional<Employee> employeeDB = employeeService.create(emplo);
 		if (employeeDB.isPresent()) {
 			return "The employee data has been saved successfully!";
 		} else {
@@ -37,7 +41,7 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Employee> getEmployeeById(@PathVariable("empid") int id) {
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id) {
 		Optional<Employee> employee = employeeService.retrieveOne(id);
 		if (employee.isPresent()) {
 			return new ResponseEntity<>(employee.get(), HttpStatus.OK);
@@ -51,7 +55,7 @@ public class EmployeeController {
 		return employeeService.retrieve();
 	}
 
-	@PutMapping
+	@PutMapping("/{id}")
 	public String updateEmployee(@RequestBody Employee employee) {
 		Optional<Employee> _employee = employeeService.update(employee);
 		if (_employee.isEmpty()) {
@@ -62,7 +66,7 @@ public class EmployeeController {
 	}
 
 	@DeleteMapping("/{id}")
-	public String deleteEmployeeById(@PathVariable("id") int id) {
+	public String deleteEmployeeById(@PathVariable("id") Long id) {
 		return employeeService.delete(id);
 	}
 

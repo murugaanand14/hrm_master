@@ -1,9 +1,6 @@
 package com.rubix.hrm.models;
 
-
-
 import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,17 +8,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+/* *@author  Muruganandham
+* @version 1.0
+*
+*/
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
+@Getter
+@Setter
 @Entity
 @Table(name = "employee")
 public class Employee {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "employee_Id")
+
 	private Long employeeId;
 
 	@Column(name = "firstName")
@@ -44,10 +52,10 @@ public class Employee {
 
 	@Column(name = "address")
 	private String address;
-    
-    @Column(name = "dob")
-    private Date dob;
-    
+
+	@Column(name = "dob")
+	private Date dob;
+
 	@Column(name = "mobileNumber")
 	private String mobileNumber;
 

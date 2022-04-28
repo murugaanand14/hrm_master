@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rubix.hrm.models.Invoice;
 import com.rubix.hrm.services.InvoiceService;
 
+/* *
+*@author Muruganandham
+*@version 1.0
+*
+*/
 @RestController
 @RequestMapping("/hrm/invoice")
 
@@ -37,7 +42,7 @@ public class InvoiceController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Invoice> getInvoiceById(@PathVariable("invoiceId") int id) {
+	public ResponseEntity<Invoice> getInvoiceById(@PathVariable("id")long id) {
 		Optional<Invoice> inv = invoiceService.retrieveOne(id);
 		if (inv.isPresent()) {
 			return new ResponseEntity<>(inv.get(), HttpStatus.OK);
@@ -51,7 +56,7 @@ public class InvoiceController {
 		return invoiceService.retrieve();
 	}
 
-	@PutMapping
+	@PutMapping("/{id}")
 	public String updateinvoice(@RequestBody Invoice invoice) {
 		Optional<Invoice> invoice1 = invoiceService.update(invoice);
 		if (invoice1.isEmpty()) {
@@ -62,7 +67,7 @@ public class InvoiceController {
 	}
 
 	@DeleteMapping("/{id}")
-	public String deleteinvoiceById(@PathVariable("id") int id) {
+	public String deleteinvoiceById(@PathVariable("id") Long id) {
 		return invoiceService.delete(id);
 	}
 
