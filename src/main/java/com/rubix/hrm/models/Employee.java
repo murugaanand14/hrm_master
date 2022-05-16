@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -64,4 +66,12 @@ public class Employee {
 
 	@Column(name = "emergncyContactNo")
 	private String emergncyContactNo;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_company_id", referencedColumnName = "company_id")
+	private Company company;
+	
+	
+	
+	
 }
