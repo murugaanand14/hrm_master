@@ -1,11 +1,16 @@
 package com.rubix.hrm.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -49,5 +54,17 @@ public class Client {
 
 	@Column(name = "client_region")
 	private String clientRegion;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinTable(name = "client_bnk", 
+		      joinColumns = 
+		        { @JoinColumn(name = "fk_client_id", referencedColumnName = "client_id") },
+		      inverseJoinColumns = 
+		        { @JoinColumn(name = "fk_bnk_id", referencedColumnName = "bank_id") })
+	private BankDetails bankDetails;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_company_cli_id", referencedColumnName = "company_id")
+	private Company company;
 
 }

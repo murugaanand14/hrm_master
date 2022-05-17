@@ -82,9 +82,10 @@ public class Company {
 		        { @JoinColumn(name = "fk_bnk_id", referencedColumnName = "bank_id") })
 	private BankDetails bankDetails;
 	
-	@OneToMany(mappedBy = "company")
-	//@JoinColumn(name="fk_emp_id", referencedColumnName = "employeeId")
-	private List <Employee>  employee;
-
-
+	@OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
+	//@JoinColumn(name="fk_emp_id")
+	private List <Employee> employee;
+	
+	@OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
+	private List <Client> client;
 }
