@@ -1,6 +1,9 @@
 package com.rubix.hrm.models;
 
 import java.sql.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -70,6 +77,11 @@ public class Employee {
 	@ManyToOne
 	@JoinColumn(name="fk_company_id", referencedColumnName = "company_id")
 	private Company company;
+	
+	@OneToMany(cascade={CascadeType.ALL})
+//	@Fetch(FetchMode.JOIN)
+//	@JoinColumn(name="fk_emp_id",referencedColumnName="empId")
+	private List <Attendance> attendance;
 	
 	
 	

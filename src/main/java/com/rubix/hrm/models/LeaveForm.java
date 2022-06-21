@@ -2,21 +2,32 @@ package com.rubix.hrm.models;
 
 
 import java.util.Date;
+//import java.util.List;
 
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 //import com.example.lms.models.NotEmpty;
 //import com.example.lms.models.NotNull;
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "leave_app")
 public class LeaveForm {
@@ -24,7 +35,7 @@ public class LeaveForm {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "empid")
-    private int empid;
+    private int empId;
 
     @Column(name = "emp_name")
     private String empName;
@@ -51,8 +62,14 @@ public class LeaveForm {
     private String reason;	
     
     @Column(name = "working_days")
-    private String workingDays;    
+    private int workingDays;    
     
     @Column(name = "approved_by")
     private String approvedBy;
+   
+    @ManyToOne
+ 	//@JoinColumn(name="fk_employeeinfo", referencedColumnName = "empid")
+ 	private Employee employee;
+    
+    
 }

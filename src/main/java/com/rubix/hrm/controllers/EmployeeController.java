@@ -31,8 +31,8 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 
 	@PostMapping
-	public String saveEmployee(@RequestBody Employee emplo) {
-		Optional<Employee> employeeDB = employeeService.create(emplo);
+	public String saveEmployee(@RequestBody Employee employ) {
+		Optional<Employee> employeeDB = employeeService.create(employ);
 		if (employeeDB.isPresent()) {
 			return "The employee data has been saved successfully!";
 		} else {

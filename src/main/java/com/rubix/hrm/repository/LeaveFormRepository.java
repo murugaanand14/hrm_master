@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.rubix.hrm.models.LeaveForm;
 
 @Repository
-public interface LeaveFormRepository extends JpaRepository<LeaveForm, Integer> {	
+public interface LeaveFormRepository extends JpaRepository<LeaveForm, Long> {	
 
 }

@@ -1,8 +1,11 @@
 package com.rubix.hrm.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,39 +20,44 @@ import com.rubix.hrm.services.LeaveFormService;
 
 import lombok.Data;
 
-@Data
-@RestController
-//@RequestMapping("/api/v1")
 public class LeaveFormController {
 	
 	@Autowired
     LeaveFormService leaveFormService;
 	
-	@GetMapping("/leaveform")
-	private List<LeaveForm> getAll() {
-		return leaveFormService.getAllLeaveForm();
+	@PostMapping("/LeaveForm")
+	public String saveForm(@RequestBody LeaveForm leaveForm) {
+		Optional<LeaveForm> FormDB = leaveFormService.create(leaveForm);
+		if (FormDB.isPresent()) {
+			return "The LeaveForm data has been saved successfully!";
+		} else {
+			return "LeaveForm already exist in records";
+		}
 	}
 
-	@GetMapping("/leaveform/{empid}")
-	private LeaveForm getLeaveForm(@PathVariable("empid") int empid) {
-		return leaveFormService.getLeaveFormById(empid);
+	@GetMapping("/Form/{empId}")
+	public ResponseEntity<LeaveForm> getFormById(@PathVariable("empId")Long empId) {
+		Optional<LeaveForm> FDB = leaveFormService.retrieveOne(empId);
+		if (FDB.isPresent()) {
+			return new ResponseEntity<>(FDB.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
-
-	@DeleteMapping("/leaveform/{empid}")
-	private void deleteLeaveForm(@PathVariable("empid") int empid) {
-	  leaveFormService.delete(empid);
+	
+	@PutMapping("/LeaveForm/{empId}")
+	private String update(@PathVariable("empId") int empId, @RequestBody LeaveForm leaveForm) {
+		return leaveFormService.update(empId, leaveForm);
 	}
-
-	@PostMapping("/leaveforms")
-	private int  saveLeaveForm(@RequestBody LeaveForm leaveForm) {
-		leaveFormService.saveOrUpdate(leaveForm);
-		return leaveForm.getEmpid();
+	
+	@GetMapping("/LeaveForms")
+	public List<LeaveForm> getAllForm() {
+		return leaveFormService.retrieve();
 	}
-
-	@PutMapping("/leaveform/{empid}")
-	private String update(@PathVariable("empid") int empid, @RequestBody LeaveForm leaveForm) {
-		return leaveFormService.update(empid, leaveForm);
-	}
-
-
+	
+	@DeleteMapping("/LeaveForms/{empId}")
+	public String deleteFormById(@PathVariable("empId")Long empId) {
+		return leaveFormService.delete(empId);
+	}	
+	
 }
